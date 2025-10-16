@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NYC Taxi Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+</head>
+<body>
+  <header class="nyc-header">
+    <div class="logo">🚕</div>
+    <h1>NYC Taxi</h1>
+    <span id="loadStatus" class="status">Loading...</span>
+  </header>
+  <main class="nyc-main compact">
+    <aside class="nyc-sidebar">
+      <h2>Search for Trips</h2>
+      <div class="filter-group">
+        <label><span class="icon">🕒</span> Pickup Time</label>
+        <input type="datetime-local" id="startTime" class="creative-input" placeholder="Start" />
+        <input type="datetime-local" id="endTime" class="creative-input" placeholder="End" />
+      </div>
+      <div class="filter-group">
+        <label><span class="icon">👥</span> Passengers</label>
+        <select id="passengerCount" class="creative-input">
+          <option value="">Any</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value=">6">&gt; 6</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label><span class="icon">⏱️</span> Trip Duration (min)</label>
+        <input type="number" id="minDuration" class="creative-input" placeholder="Min" />
+        <input type="number" id="maxDuration" class="creative-input" placeholder="Max" />
+      </div>
+      <div class="filter-group">
+        <label><span class="icon">📏</span> Distance (km)</label>
+        <input type="number" step="0.1" id="minDistance" class="creative-input" placeholder="Min" />
+        <input type="number" step="0.1" id="maxDistance" class="creative-input" placeholder="Max" />
+      </div>
+      <div class="filter-group">
+        <label><span class="icon">🏢</span> Vendor</label>
+        <select id="vendorId" class="creative-input">
+          <option value="">Any</option>
+          <option value="1">Vendor 1</option>
+          <option value="2">Vendor 2</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label><span class="icon">🔍</span> Search by ID or Location</label>
+        <input type="text" id="searchBox" class="creative-input" placeholder="Trip ID, pickup or dropoff..." />
+      </div>
+      <div class="filter-actions">
+        <button id="refineBtn" class="nyc-btn accent">Search</button>
+        <button id="resetBtn" class="nyc-btn">Clear</button>
+      </div>
+      <div class="filter-group">
+        <label>Sort by</label>
+        <select id="sortBy" class="creative-input">
+          <option value="pickup_datetime">Pickup Time</option>
+          <option value="trip_duration">Duration</option>
+          <option value="distance_km">Distance</option>
+        </select>
+        <select id="sortDir" class="creative-input">
+          <option value="asc">Ascending</option>
+          <option value="desc">Descending</option>
+        </select>
+      </div>
+    </aside>
+    <section class="nyc-content">
+      <div class="nyc-cards">
+        <div class="nyc-card">
+          <div class="nyc-metric" id="metricTrips">-</div>
+          <div class="nyc-label">Total Trips</div>
+        </div>
+        <div class="nyc-card">
+          <div class="nyc-metric" id="metricMedianDistance">-</div>
+          <div class="nyc-label">Median Distance (km)</div>
+        </div>
+        <div class="nyc-card">
+          <div class="nyc-metric" id="metricMedianDuration">-</div>
+          <div class="nyc-label">Median Duration (min)</div>
+        </div>
+      </div>
+      <div class="nyc-panels">
+        <div class="nyc-panel">
+          <h3>Trip Duration Distribution</h3>
+          <canvas id="durationHist"></canvas>
+        </div>
+        <div class="nyc-panel">
+          <h3>Distance Distribution</h3>
+          <canvas id="distanceHist"></canvas>
+        </div>
+        <div class="nyc-panel">
+          <h3>Vendor Share</h3>
+          <canvas id="vendorChart"></canvas>
+        </div>
+        <div class="nyc-panel wide">
+          <h3>Pickup Density Map</h3>
+          <div id="map"></div>
+        </div>
+      </div>
+      <div class="nyc-table-panel">
+        <h3>Trips Table</h3>
+        <table id="tripsTable">
+          <thead>
+            <tr>
+              <th>Pickup</th>
+              <th>Dropoff</th>
+              <th>Passengers</th>
+              <th>Duration (min)</th>
+              <th>Distance (km)</th>
+              <th>Vendor</th>
+              <th>Details</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+        <div class="nyc-pagination">
+          <button id="prevPage" class="nyc-btn">Prev</button>
+          <span id="pageInfo">Page 1</span>
+          <button id="nextPage" class="nyc-btn">Next</button>
+          <label>Rows per page
+            <select id="rowsPerPage" class="creative-input">
+              <option>25</option>
+              <option>50</option>
+              <option>100</option>
+            </select>
+          </label>
+        </div>
+      </div>
+    </section>
+  </main>
+  <div id="modal" class="nyc-modal" style="display:none;">
+    <div class="nyc-modal-content">
+      <span id="closeModal" class="nyc-close">&times;</span>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+  <footer class="nyc-footer">
+    &copy; 2025 NYC Taxi. All rights reserved.
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
