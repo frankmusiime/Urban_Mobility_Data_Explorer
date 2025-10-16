@@ -106,7 +106,7 @@ for chunk in pd.read_csv(RAW_FILE, chunksize=CHUNKSIZE, low_memory=False):
     first_write = False
     chunk = chunk[~((chunk["trip_distance_km"] <= 0) | (chunk["speed_kmh"] <= 0) | (chunk["speed_kmh"] > 200))]
     chunk.to_csv(CLEAN_FILE, mode="a", index=False, header=not os.path.exists(CLEAN_FILE))
- # #Database Schema # #
+ # Database Schema  #
 Overview
 Create a normalized, indexed schema for the trips table.
 
@@ -201,7 +201,7 @@ Implement a manual algorithm to determine the fastest pickup zones based on aver
  # Example Complexity Analysis # 
 Time Complexity: O(n) to read n rows + O(z) to scan zones for best average (z ≤ n). So, overall O(n).
 Space Complexity: O(z) for maps (worst-case O(n)).
- # Insights # #
+ # Insights  #
 Insight	Method	Interpretation
 Fastest Pickup Zones	Algorithm / SQL	Highways or low-traffic areas
 Peak Congestion Hours	AVG(trip_duration_min) by hour	Identify rush hours
