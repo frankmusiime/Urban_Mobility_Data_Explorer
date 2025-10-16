@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+
 """
 Insert all rows from clean_data.csv into MySQL.
 """
