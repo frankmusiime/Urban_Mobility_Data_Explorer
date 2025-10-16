@@ -195,7 +195,7 @@ fetch("http://127.0.0.1:5000/api/trips?limit=100")
     console.log(data);
   });
  # Manual Algorithm  #
- #Overview #
+ Overview 
 Implement a manual algorithm to determine the fastest pickup zones based on average speed.
 
  # Example Complexity Analysis # 
@@ -207,7 +207,7 @@ Fastest Pickup Zones	Algorithm / SQL	Highways or low-traffic areas
 Peak Congestion Hours	AVG(trip_duration_min) by hour	Identify rush hours
 Speed vs Distance	AVG(speed_kmh) by distance bin	Detect anomalies or route efficiency
  # Testing & Runtime #
- #Overview #
+ Overview 
 Test the performance and functionality of the application.
 
 Use time.time() or time.perf_counter() in your algorithm script to report elapsed time.
