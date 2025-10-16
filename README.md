@@ -135,7 +135,7 @@ Notes
 Use VARCHAR for IDs if original IDs are strings.
 Index pickup_datetime for time-based queries.
 Index latitude/longitude pairs for zone-level queries.
- # #Backend API
+ # Backend API
 Overview
 The backend API provides endpoints to interact with the database.
 
@@ -183,7 +183,7 @@ Avoid returning the entire database in one request.
 Overview
 The frontend dashboard provides a user interface for data visualization.
 
-  ## Key Endpoints # #
+  # Key Endpoints  #
 GET /api/trips — Supports limit, offset, column selection, and filters.
 GET /api/fastest_zones — Returns top zones by average speed.
 Example Fetch in Frontend JS
@@ -194,19 +194,19 @@ fetch("http://127.0.0.1:5000/api/trips?limit=100")
     // Populate table or charts
     console.log(data);
   });
- # #Manual Algorithm # #
+ # Manual Algorithm  #
  #Overview #
 Implement a manual algorithm to determine the fastest pickup zones based on average speed.
 
  # Example Complexity Analysis # 
 Time Complexity: O(n) to read n rows + O(z) to scan zones for best average (z ≤ n). So, overall O(n).
 Space Complexity: O(z) for maps (worst-case O(n)).
- # #Insights # #
+ # Insights # #
 Insight	Method	Interpretation
 Fastest Pickup Zones	Algorithm / SQL	Highways or low-traffic areas
 Peak Congestion Hours	AVG(trip_duration_min) by hour	Identify rush hours
 Speed vs Distance	AVG(speed_kmh) by distance bin	Detect anomalies or route efficiency
- # #Testing & Runtime # #
+ # Testing & Runtime #
  #Overview #
 Test the performance and functionality of the application.
 
@@ -215,5 +215,5 @@ Print counts per chunk and total inserted rows for insertion scripts.
 Test API endpoints using Postman or curl:
 Copy
 curl "http://127.0.0.1:5000/api/trips?limit=100"
- # #Video Walkthrough # #
+ # Video Walkthrough  
 A short video demonstrating the working system will be provided here.
