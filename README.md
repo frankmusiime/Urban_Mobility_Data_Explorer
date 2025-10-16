@@ -182,16 +182,16 @@ Avoid returning the entire database in one request.
  # Frontend Dashboard #
 Overview
 The frontend dashboard provides a user interface for data visualization.
-Technologies Used
-HTML: For structuring the webpage.
-CSS: For styling the dashboard.
-JavaScript: For dynamic content and API calls.
-Chart.js: For visualizing data in charts.
+# Technologies Used
+**HTML:** For structuring the webpage.
+**CSS:** For styling the dashboard.
+**JavaScript:** For dynamic content and API calls.
+**Chart.js:** For visualizing data in charts.
 Features
 Displays a table of trips with relevant data.
 Interactive charts showing average trip duration and speed.
 Filters to select specific data views.
-# Example Frontend Code
+## Example Frontend Code
 Copy
 <!DOCTYPE html>
 <html lang="en">
