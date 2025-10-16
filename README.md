@@ -182,6 +182,33 @@ Avoid returning the entire database in one request.
  # Frontend Dashboard #
 Overview
 The frontend dashboard provides a user interface for data visualization.
+Technologies Used
+HTML: For structuring the webpage.
+CSS: For styling the dashboard.
+JavaScript: For dynamic content and API calls.
+Chart.js: For visualizing data in charts.
+Features
+Displays a table of trips with relevant data.
+Interactive charts showing average trip duration and speed.
+Filters to select specific data views.
+# Example Frontend Code
+Copy
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Urban Mobility Data Explorer</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1>Urban Mobility Data Explorer</h1>
+    <div id="data-table"></div>
+    <canvas id="myChart"></canvas>
+    <script>script.py </script>
+</body>
+</html>
 
   # Key Endpoints  #
 GET /api/trips — Supports limit, offset, column selection, and filters.
