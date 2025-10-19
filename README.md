@@ -226,4 +226,5 @@ Test API endpoints using Postman or curl:
 Copy
 curl "http://127.0.0.1:5000/api/trips?limit=100"
  ### Video Walkthrough  
-A short video demonstrating the working system will be provided here.
+https://youtu.be/OAinHL3CKUI
+
